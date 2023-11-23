@@ -23,9 +23,17 @@ def buildgraph(filename, k):
     """Build and return a graph with words of length k from the lexicon in filename
 
     """
-
-    #FIXME
-    pass
+    
+    f = open(filename,'r')
+    words = f.readlines()
+    to_add = []
+    for w in words :
+        if (len(w)==k):
+            to_add.append(w)          
+    
+    res = graph(len(to_add),False,to_add)
+      
+            
 
 ###############################################################################
 #   LEVEL 1
