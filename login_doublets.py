@@ -18,7 +18,14 @@ from algo_py import graph, queue
 
 
 #   LEVEL 0
-        
+
+def __nb_diff__(s1,s2):
+    res = 0
+    for i in range(len(s1)):
+        if (s1[i] != s2[i]):
+            res+=1
+    return res
+
 def buildgraph(filename, k):
     """Build and return a graph with words of length k from the lexicon in filename
 
@@ -31,8 +38,13 @@ def buildgraph(filename, k):
         if (len(w)==k):
             to_add.append(w)          
     
-    res = graph(len(to_add),False,to_add)
-      
+    res = graph.Graph(len(to_add),False,to_add)
+
+    for i in range(len(to_add)):
+        for y in range(i+1,len(to_add)):
+            if __nb_diff__(to_add[i],to_add[y]) == 1:
+                res.addedge(i,y)
+    return res
             
 
 ###############################################################################
@@ -42,8 +54,7 @@ def mostconnected(G):
     """ Return the list of words that are directly linked to the most other words in G
 
     """
-    #FIXME
-    pass
+    
 
 
 def ischain(G, L):
